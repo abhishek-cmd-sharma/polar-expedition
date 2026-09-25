@@ -15,7 +15,7 @@ const Personnel = () => {
   });
 
   const fetchPersonnel = () => {
-    fetch(`${API_BASE_URL}/api/personnel', {
+    fetch(`${API_BASE_URL}/api/personnel`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.json())
@@ -36,7 +36,7 @@ const Personnel = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_BASE_URL}/api/personnel', {
+      const response = await fetch(`${API_BASE_URL}/api/personnel`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

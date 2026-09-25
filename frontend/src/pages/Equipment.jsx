@@ -6,7 +6,7 @@ const Equipment = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/equipment', {
+    fetch(`${API_BASE_URL}/api/equipment`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.json())

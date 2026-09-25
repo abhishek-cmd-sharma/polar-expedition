@@ -19,7 +19,7 @@ const Cargo = () => {
   });
 
   const fetchCargo = () => {
-    fetch(`${API_BASE_URL}/api/cargo', {
+    fetch(`${API_BASE_URL}/api/cargo`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.json())
@@ -44,7 +44,7 @@ const Cargo = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_BASE_URL}/api/cargo', {
+      const response = await fetch(`${API_BASE_URL}/api/cargo`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

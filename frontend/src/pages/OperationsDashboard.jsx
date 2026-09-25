@@ -13,7 +13,7 @@ const OperationsDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/dashboard/operations', {
+        const response = await fetch(`${API_BASE_URL}/api/dashboard/operations`, {
           headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
         });
         if (!response.ok) throw new Error('Failed to fetch operations data');

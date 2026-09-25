@@ -10,8 +10,8 @@ const Analytics = () => {
     const fetchData = async () => {
       try {
         const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` };
-        const invRes = await fetch(`${API_BASE_URL}/api/inventory', { headers });
-        const cargoRes = await fetch(`${API_BASE_URL}/api/cargo', { headers });
+        const invRes = await fetch(`${API_BASE_URL}/api/inventory`, { headers });
+        const cargoRes = await fetch(`${API_BASE_URL}/api/cargo`, { headers });
         
         if (invRes.ok) {
           const invList = await invRes.json();

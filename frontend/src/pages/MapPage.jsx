@@ -24,7 +24,7 @@ const MapPage = () => {
   const mapCenter = [-82.8628, 135.0000];
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/teams', {
+    fetch(`${API_BASE_URL}/api/teams`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.json())

@@ -6,7 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import { ROLES } from '../utils/permissions';
 import io from 'socket.io-client';
 
-const socket = io(`${API_BASE_URL}');
+const socket = io(`${API_BASE_URL}`);
 
 const Layout = () => {
   const location = useLocation();

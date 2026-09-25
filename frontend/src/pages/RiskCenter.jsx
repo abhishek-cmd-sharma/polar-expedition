@@ -7,7 +7,7 @@ const RiskCenter = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/dashboard/operations', {
+    fetch(`${API_BASE_URL}/api/dashboard/operations`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.json())

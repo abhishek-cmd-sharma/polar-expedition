@@ -15,7 +15,7 @@ const Teams = () => {
 
   const fetchTeams = async () => {
     try {
-      const res = await fetch(`${API_BASE_URL}/api/teams', {
+      const res = await fetch(`${API_BASE_URL}/api/teams`, {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
       });
       if (res.ok) {
@@ -38,7 +38,7 @@ const Teams = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_BASE_URL}/api/teams', {
+      const response = await fetch(`${API_BASE_URL}/api/teams`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -7,7 +7,7 @@ const AIInsights = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/ai/insights', {
+    fetch(`${API_BASE_URL}/api/ai/insights`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.json())

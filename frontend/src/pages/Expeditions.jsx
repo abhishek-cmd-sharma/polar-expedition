@@ -17,7 +17,7 @@ const Expeditions = () => {
   });
 
   const fetchExpeditions = () => {
-    fetch(`${API_BASE_URL}/api/expeditions', {
+    fetch(`${API_BASE_URL}/api/expeditions`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
@@ -40,7 +40,7 @@ const Expeditions = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_BASE_URL}/api/expeditions', {
+      const response = await fetch(`${API_BASE_URL}/api/expeditions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

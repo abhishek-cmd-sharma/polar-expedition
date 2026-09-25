@@ -19,7 +19,7 @@ const Inventory = () => {
   });
 
   const fetchInventory = () => {
-    fetch(`${API_BASE_URL}/api/inventory', {
+    fetch(`${API_BASE_URL}/api/inventory`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
@@ -42,7 +42,7 @@ const Inventory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_BASE_URL}/api/inventory', {
+      const response = await fetch(`${API_BASE_URL}/api/inventory`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

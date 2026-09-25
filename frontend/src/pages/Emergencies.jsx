@@ -18,7 +18,7 @@ const Emergencies = () => {
   });
 
   const fetchEmergencies = () => {
-    fetch(`${API_BASE_URL}/api/emergencies', {
+    fetch(`${API_BASE_URL}/api/emergencies`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.json())
@@ -39,7 +39,7 @@ const Emergencies = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_BASE_URL}/api/emergencies', {
+      const response = await fetch(`${API_BASE_URL}/api/emergencies`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
