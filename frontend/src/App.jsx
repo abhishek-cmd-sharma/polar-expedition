@@ -22,6 +22,7 @@ import Login from './pages/Login';
 import Unauthorized from './pages/Unauthorized';
 import Users from './pages/Users';
 import Profile from './pages/Profile';
+import Tasks from './pages/Tasks';
 import { ROLES } from './utils/permissions';
 
 const RoleBasedRedirect = () => {
@@ -58,6 +59,7 @@ function App() {
               <Route path="movement" element={<Movement />} />
               <Route path="reports" element={<Reports />} />
               <Route path="profile" element={<Profile />} />
+              <Route path="tasks" element={<Tasks />} />
               
               <Route element={<ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.OPERATIONS_OFFICER]} />}>
                 <Route path="equipment" element={<Equipment />} />
