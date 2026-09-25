@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { Map as MapIcon, Package, AlertTriangle, Archive, Navigation, Info } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
@@ -12,7 +13,7 @@ const OperationsDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/dashboard/operations', {
+        const response = await fetch(`${API_BASE_URL}/api/dashboard/operations', {
           headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
         });
         if (!response.ok) throw new Error('Failed to fetch operations data');

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { MapPin, Users, Package, AlertOctagon, CheckCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
@@ -11,7 +12,7 @@ const FieldDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/dashboard/field', {
+        const response = await fetch(`${API_BASE_URL}/api/dashboard/field', {
           headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
         });
         if (!response.ok) throw new Error('Failed to fetch field dashboard data');

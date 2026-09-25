@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts';
 
@@ -9,8 +10,8 @@ const Analytics = () => {
     const fetchData = async () => {
       try {
         const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` };
-        const invRes = await fetch('http://localhost:5000/api/inventory', { headers });
-        const cargoRes = await fetch('http://localhost:5000/api/cargo', { headers });
+        const invRes = await fetch(`${API_BASE_URL}/api/inventory', { headers });
+        const cargoRes = await fetch(`${API_BASE_URL}/api/cargo', { headers });
         
         if (invRes.ok) {
           const invList = await invRes.json();

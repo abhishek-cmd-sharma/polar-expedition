@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -23,7 +24,7 @@ const MapPage = () => {
   const mapCenter = [-82.8628, 135.0000];
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/teams', {
+    fetch(`${API_BASE_URL}/api/teams', {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.json())

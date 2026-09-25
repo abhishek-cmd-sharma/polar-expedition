@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { Truck, Ship, CheckCircle, PackageSearch, Plus, X } from 'lucide-react';
 
@@ -18,7 +19,7 @@ const Cargo = () => {
   });
 
   const fetchCargo = () => {
-    fetch('http://localhost:5000/api/cargo', {
+    fetch(`${API_BASE_URL}/api/cargo', {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.json())
@@ -43,7 +44,7 @@ const Cargo = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/cargo', {
+      const response = await fetch(`${API_BASE_URL}/api/cargo', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

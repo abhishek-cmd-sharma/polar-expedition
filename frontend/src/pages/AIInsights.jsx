@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { BrainCircuit, Lightbulb, TrendingUp, AlertCircle, Loader } from 'lucide-react';
 
@@ -6,7 +7,7 @@ const AIInsights = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/ai/insights', {
+    fetch(`${API_BASE_URL}/api/ai/insights', {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.json())

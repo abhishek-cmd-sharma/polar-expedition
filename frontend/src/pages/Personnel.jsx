@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { Plus, X } from 'lucide-react';
 
@@ -14,7 +15,7 @@ const Personnel = () => {
   });
 
   const fetchPersonnel = () => {
-    fetch('http://localhost:5000/api/personnel', {
+    fetch(`${API_BASE_URL}/api/personnel', {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.json())
@@ -35,7 +36,7 @@ const Personnel = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/personnel', {
+      const response = await fetch(`${API_BASE_URL}/api/personnel', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { AlertTriangle, MapPin, Clock, Activity, ShieldAlert, X } from 'lucide-react';
 
@@ -17,7 +18,7 @@ const Emergencies = () => {
   });
 
   const fetchEmergencies = () => {
-    fetch('http://localhost:5000/api/emergencies', {
+    fetch(`${API_BASE_URL}/api/emergencies', {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.json())
@@ -38,7 +39,7 @@ const Emergencies = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/emergencies', {
+      const response = await fetch(`${API_BASE_URL}/api/emergencies', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -61,7 +62,7 @@ const Emergencies = () => {
 
   const resolveEmergency = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/emergencies/${id}`, {
+      await fetch(`${API_BASE_URL}/api/emergencies/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { Users, UserPlus, X } from 'lucide-react';
 
@@ -14,7 +15,7 @@ const Teams = () => {
 
   const fetchTeams = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/teams', {
+      const res = await fetch(`${API_BASE_URL}/api/teams', {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
       });
       if (res.ok) {
@@ -37,7 +38,7 @@ const Teams = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/teams', {
+      const response = await fetch(`${API_BASE_URL}/api/teams', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

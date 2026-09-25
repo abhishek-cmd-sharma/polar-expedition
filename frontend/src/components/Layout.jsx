@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, Users, Package, Archive, PenTool, AlertTriangle, Map as MapIcon, Bell, BarChart2, LogOut, Settings, X } from 'lucide-react';
@@ -5,7 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import { ROLES } from '../utils/permissions';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:5000');
+const socket = io(`${API_BASE_URL}');
 
 const Layout = () => {
   const location = useLocation();

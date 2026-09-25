@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { Plus, X } from 'lucide-react';
 import axios from 'axios';
@@ -16,7 +17,7 @@ const Expeditions = () => {
   });
 
   const fetchExpeditions = () => {
-    fetch('http://localhost:5000/api/expeditions', {
+    fetch(`${API_BASE_URL}/api/expeditions', {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
@@ -39,7 +40,7 @@ const Expeditions = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/expeditions', {
+      const response = await fetch(`${API_BASE_URL}/api/expeditions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

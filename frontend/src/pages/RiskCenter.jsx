@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { ShieldAlert, AlertTriangle, Info, CheckCircle } from 'lucide-react';
 
@@ -6,7 +7,7 @@ const RiskCenter = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/dashboard/operations', {
+    fetch(`${API_BASE_URL}/api/dashboard/operations', {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.json())

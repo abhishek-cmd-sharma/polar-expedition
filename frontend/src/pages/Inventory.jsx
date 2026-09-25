@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { Search, Plus, X } from 'lucide-react';
 import axios from 'axios';
@@ -18,7 +19,7 @@ const Inventory = () => {
   });
 
   const fetchInventory = () => {
-    fetch('http://localhost:5000/api/inventory', {
+    fetch(`${API_BASE_URL}/api/inventory', {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
@@ -41,7 +42,7 @@ const Inventory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/inventory', {
+      const response = await fetch(`${API_BASE_URL}/api/inventory', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
