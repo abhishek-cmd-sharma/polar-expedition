@@ -23,6 +23,7 @@ import Unauthorized from './pages/Unauthorized';
 import Users from './pages/Users';
 import Profile from './pages/Profile';
 import Tasks from './pages/Tasks';
+import LandingPage from './pages/LandingPage';
 import { ROLES } from './utils/permissions';
 
 const RoleBasedRedirect = () => {
@@ -39,38 +40,40 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
           
-          <Route path="/" element={<ProtectedRoute />}>
+          {/* Main App Routes */}
+          <Route element={<ProtectedRoute />}>
             <Route element={<Layout />}>
-              <Route index element={<RoleBasedRedirect />} />
+              <Route path="/dashboard" element={<RoleBasedRedirect />} />
               
-              <Route path="admin/dashboard" element={<ProtectedRoute allowedRoles={[ROLES.ADMIN]}><AdminDashboard /></ProtectedRoute>} />
-              <Route path="operations/dashboard" element={<ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.OPERATIONS_OFFICER]}><OperationsDashboard /></ProtectedRoute>} />
-              <Route path="field/dashboard" element={<ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.OPERATIONS_OFFICER, ROLES.FIELD_TEAM]}><FieldDashboard /></ProtectedRoute>} />
+              <Route path="/admin/dashboard" element={<ProtectedRoute allowedRoles={[ROLES.ADMIN]}><AdminDashboard /></ProtectedRoute>} />
+              <Route path="/operations/dashboard" element={<ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.OPERATIONS_OFFICER]}><OperationsDashboard /></ProtectedRoute>} />
+              <Route path="/field/dashboard" element={<ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.OPERATIONS_OFFICER, ROLES.FIELD_TEAM]}><FieldDashboard /></ProtectedRoute>} />
               
-              <Route path="expeditions" element={<Expeditions />} />
-              <Route path="personnel" element={<Personnel />} />
-              <Route path="cargo" element={<Cargo />} />
-              <Route path="inventory" element={<Inventory />} />
-              <Route path="emergencies" element={<Emergencies />} />
-              <Route path="teams" element={<Teams />} />
-              <Route path="movement" element={<Movement />} />
-              <Route path="reports" element={<Reports />} />
-              <Route path="profile" element={<Profile />} />
-              <Route path="tasks" element={<Tasks />} />
+              <Route path="/expeditions" element={<Expeditions />} />
+              <Route path="/personnel" element={<Personnel />} />
+              <Route path="/cargo" element={<Cargo />} />
+              <Route path="/inventory" element={<Inventory />} />
+              <Route path="/emergencies" element={<Emergencies />} />
+              <Route path="/teams" element={<Teams />} />
+              <Route path="/movement" element={<Movement />} />
+              <Route path="/reports" element={<Reports />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/tasks" element={<Tasks />} />
               
               <Route element={<ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.OPERATIONS_OFFICER]} />}>
-                <Route path="equipment" element={<Equipment />} />
-                <Route path="analytics" element={<Analytics />} />
-                <Route path="map" element={<MapPage />} />
-                <Route path="risk" element={<RiskCenter />} />
-                <Route path="ai" element={<AIInsights />} />
+                <Route path="/equipment" element={<Equipment />} />
+                <Route path="/analytics" element={<Analytics />} />
+                <Route path="/map" element={<MapPage />} />
+                <Route path="/risk" element={<RiskCenter />} />
+                <Route path="/ai" element={<AIInsights />} />
               </Route>
               
               <Route element={<ProtectedRoute allowedRoles={[ROLES.ADMIN]} />}>
-                <Route path="users" element={<Users />} />
+                <Route path="/users" element={<Users />} />
               </Route>
             </Route>
           </Route>

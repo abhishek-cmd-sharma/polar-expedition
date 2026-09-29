@@ -21,7 +21,7 @@ const Login = () => {
     if (isLogin) {
       const result = await login(username, password);
       if (result.success) {
-        navigate('/');
+        navigate('/dashboard');
       } else {
         setError(result.message);
       }
@@ -42,7 +42,7 @@ const Login = () => {
           // Automatically log the user in after successful registration
           const loginResult = await login(username, password);
           if (loginResult.success) {
-            navigate('/');
+            navigate('/dashboard');
           } else {
             setError('Registration successful, but auto-login failed: ' + loginResult.message);
             setIsLogin(true);
