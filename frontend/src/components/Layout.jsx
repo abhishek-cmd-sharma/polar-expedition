@@ -1,7 +1,7 @@
 import { API_BASE_URL } from '../config';
 import { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Users, Package, Archive, PenTool, AlertTriangle, Map as MapIcon, Bell, BarChart2, LogOut, Settings, X } from 'lucide-react';
+import { LayoutDashboard, Users, Package, Archive, PenTool, AlertTriangle, Map as MapIcon, Bell, BarChart2, LogOut, Settings, X, Menu } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { ROLES } from '../utils/permissions';
 import io from 'socket.io-client';
@@ -13,6 +13,7 @@ const Layout = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const [notifications, setNotifications] = useState([]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   useEffect(() => {
     socket.on('new_emergency', (data) => {
@@ -100,14 +101,29 @@ const Layout = () => {
   const navigation = getNavigation();
 
   return (
-    <div className="flex h-screen bg-slate-900 text-slate-50 overflow-hidden">
+    <div className="flex h-screen bg-slate-900 text-slate-50 overflow-hidden relative">
+      {/* Sidebar Overlay (Mobile) */}
+      {isSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <div className="w-64 bg-slate-800 border-r border-slate-700 flex flex-col">
-        <div className="h-16 flex items-center px-6 border-b border-slate-700">
+      <div className={`
+        fixed inset-y-0 left-0 z-50 md:relative
+        bg-slate-800 flex flex-col transition-all duration-300 ease-in-out overflow-hidden shrink-0 whitespace-nowrap 
+        ${isSidebarOpen ? 'w-64 border-r border-slate-700 translate-x-0' : 'w-0 border-none -translate-x-full md:translate-x-0'}
+      `}>
+        <div className="h-16 flex items-center justify-between px-6 border-b border-slate-700 min-w-[16rem]">
           <div className="font-bold text-xl tracking-wider text-blue-400">POLAR COMMAND</div>
+          <button onClick={() => setIsSidebarOpen(false)} className="md:hidden text-slate-400 hover:text-white">
+            <X className="h-6 w-6" />
+          </button>
         </div>
         
-        <div className="flex-1 overflow-y-auto py-4">
+        <div className="flex-1 overflow-y-auto py-4 min-w-[16rem]">
           <nav className="space-y-1 px-3">
             {navigation.map((item) => {
               const isActive = location.pathname === item.href;
@@ -130,7 +146,7 @@ const Layout = () => {
           </nav>
         </div>
         
-        <div className="p-4 border-t border-slate-700">
+        <div className="p-4 border-t border-slate-700 min-w-[16rem]">
           <button 
             onClick={handleLogout}
             className="flex items-center w-full px-3 py-2 text-sm font-medium text-slate-300 rounded-md hover:bg-slate-700 hover:text-white transition-colors"
@@ -142,7 +158,7 @@ const Layout = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col overflow-hidden relative">
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
         
         {/* Toast Notifications */}
         <div className="absolute top-4 right-4 z-50 flex flex-col gap-2">
@@ -162,9 +178,17 @@ const Layout = () => {
 
         {/* Top Header */}
         <header className="h-16 bg-slate-800 border-b border-slate-700 flex items-center justify-between px-8">
-          <h1 className="text-xl font-semibold">
-            {navigation.find(n => n.href === location.pathname)?.name || 'Polar Command'}
-          </h1>
+          <div className="flex items-center">
+            <button 
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)} 
+              className="mr-4 text-slate-400 hover:text-white transition-colors"
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+            <h1 className="text-xl font-semibold">
+              {navigation.find(n => n.href === location.pathname)?.name || 'Polar Command'}
+            </h1>
+          </div>
           <div className="flex items-center space-x-4">
             <button className="relative p-2 text-slate-400 hover:text-white transition-colors" onClick={() => setNotifications([])}>
               <Bell className="h-6 w-6" />
